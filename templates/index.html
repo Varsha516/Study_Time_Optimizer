@@ -78,112 +78,31 @@ font-size:14px;
 <h1>AI Study Time Optimizer</h1>
 
 <p class="subtitle">
-Enter your subjects, select difficulty, and let AI optimize your study schedule.
+Enter number of subjects, add their difficulty, and let AI optimize your study schedule.
 </p>
 
 <form method="POST">
 
-<!-- SUBJECT 1 -->
+<!-- NUMBER OF SUBJECTS -->
 
-<div class="row mb-3">
+<div class="mb-3">
 
-<div class="col-md-6">
-
-<label class="form-label">Subject 1</label>
+<label class="form-label">Number of Subjects</label>
 
 <input
-type="text"
+type="number"
 class="form-control"
-name="subject"
-placeholder="Enter subject name"
+id="numSubjects"
+placeholder="Enter number of subjects"
+min="1"
+max="10"
 required>
 
 </div>
 
-<div class="col-md-6">
+<!-- SUBJECT INPUT AREA -->
 
-<label class="form-label">Difficulty</label>
-
-<select class="form-control" name="difficulty" required>
-
-<option value="" disabled selected>Choose Difficulty</option>
-<option value="Easy">Easy</option>
-<option value="Medium">Medium</option>
-<option value="Hard">Hard</option>
-
-</select>
-
-</div>
-
-</div>
-
-<!-- SUBJECT 2 -->
-
-<div class="row mb-3">
-
-<div class="col-md-6">
-
-<label class="form-label">Subject 2</label>
-
-<input
-type="text"
-class="form-control"
-name="subject"
-placeholder="Enter subject name"
-required>
-
-</div>
-
-<div class="col-md-6">
-
-<label class="form-label">Difficulty</label>
-
-<select class="form-control" name="difficulty" required>
-
-<option value="" disabled selected>Choose Difficulty</option>
-<option value="Easy">Easy</option>
-<option value="Medium">Medium</option>
-<option value="Hard">Hard</option>
-
-</select>
-
-</div>
-
-</div>
-
-<!-- SUBJECT 3 -->
-
-<div class="row mb-3">
-
-<div class="col-md-6">
-
-<label class="form-label">Subject 3</label>
-
-<input
-type="text"
-class="form-control"
-name="subject"
-placeholder="Enter subject name"
-required>
-
-</div>
-
-<div class="col-md-6">
-
-<label class="form-label">Difficulty</label>
-
-<select class="form-control" name="difficulty" required>
-
-<option value="" disabled selected>Choose Difficulty</option>
-<option value="Easy">Easy</option>
-<option value="Medium">Medium</option>
-<option value="Hard">Hard</option>
-
-</select>
-
-</div>
-
-</div>
+<div id="subjectsContainer"></div>
 
 <!-- STUDY HOURS -->
 
@@ -200,8 +119,6 @@ placeholder="Example: 6"
 required>
 
 </div>
-
-<!-- BUTTON -->
 
 <button class="btn btn-primary btn-optimize">
 
@@ -260,6 +177,59 @@ AI Study Planner
 </div>
 
 </div>
+
+<script>
+
+document.getElementById("numSubjects").addEventListener("input", function(){
+
+let container = document.getElementById("subjectsContainer");
+container.innerHTML = "";
+
+let n = this.value;
+
+for(let i=1;i<=n;i++){
+
+container.innerHTML += `
+
+<div class="row mb-3">
+
+<div class="col-md-6">
+
+<label class="form-label">Subject ${i}</label>
+
+<input
+type="text"
+class="form-control"
+name="subject"
+placeholder="Enter subject name"
+required>
+
+</div>
+
+<div class="col-md-6">
+
+<label class="form-label">Difficulty</label>
+
+<select class="form-control" name="difficulty" required>
+
+<option value="" disabled selected>Choose Difficulty</option>
+<option value="Easy">Easy</option>
+<option value="Medium">Medium</option>
+<option value="Hard">Hard</option>
+
+</select>
+
+</div>
+
+</div>
+
+`;
+
+}
+
+});
+
+</script>
 
 </body>
 
